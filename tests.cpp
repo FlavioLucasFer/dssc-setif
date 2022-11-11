@@ -38,7 +38,7 @@ static void test_push_front ()
     assert(list.begin()->previous == nullptr);
     assert(list.begin()->next != list.end());
     assert(list.begin()->next->value == 5);
-    assert(list.size() == 2);
+    assert(list.size() == 3);
 }
 
 static void test_push_back ()
@@ -63,13 +63,13 @@ static void test_push_back ()
 
     list.push_back(9);
 
-    assert(list.back() == 5);
+    assert(list.back() == 9);
     assert(list.front() == 1);
     assert(list.end() != list.begin());
     assert(list.end()->next == nullptr);
     assert(list.end()->previous != list.end());
     assert(list.end()->previous->value == 5);
-    assert(list.size() == 2);
+    assert(list.size() == 3);
 }
 
 static void test_get ()
@@ -88,7 +88,7 @@ static void test_get ()
 
 static void test_erase_head (list_t list)
 {
-    list_node_t* new_head = list.erase(0);
+    list_node_t* new_head = list.erase(list.get(0));
 
     assert(new_head == list.begin());
     assert(new_head->value == 1);
@@ -101,12 +101,12 @@ static void test_erase_head (list_t list)
 
 static void test_erase_tail (list_t list)
 {
-    list_node_t* new_tail = list.erase(10);
+    list_node_t* new_tail = list.erase(list.get(9));
 
     assert(new_tail == list.end());
-    assert(new_tail->value == 9);
+    assert(new_tail->value == 8);
     assert(new_tail->next == nullptr);
-    assert(new_tail->previous->value == 8);
+    assert(new_tail->previous->value == 7);
     assert(new_tail->previous->next == new_tail);
 
     assert(list.get(10) == nullptr);
@@ -114,7 +114,7 @@ static void test_erase_tail (list_t list)
 
 static void test_erase_middle (list_t list)
 {
-    list_node_t* next_node = list.erase(5);
+    list_node_t* next_node = list.erase(list.get(5));
 
     assert(next_node != list.begin());
     assert(next_node != list.end());
@@ -138,7 +138,7 @@ static void test_erase ()
     test_erase_tail(list);
     test_erase_middle(list);
 
-    assert(list.erase(11) == nullptr);
+    assert(list.erase(list.get(10)) == nullptr);
 }
 
 int main ()

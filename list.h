@@ -26,7 +26,7 @@ class list_t
         void push_front (const int& value) noexcept;
         void push_back (const int& value) noexcept;
         list_node_t* get (const int& value) noexcept;
-        list_node_t* erase (const int& value) noexcept;
+        list_node_t* erase (list_node_t* node) noexcept;
 
     public:
         inline list_node_t* begin () const noexcept

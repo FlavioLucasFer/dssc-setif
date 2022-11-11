@@ -5,7 +5,7 @@ list_t::list_t () {}
 list_t::~list_t ()
 {
     // TODO: free all allocated memory
-    // A FAZER: liberar todo a memoria alocada
+    // A FAZER: liberar toda a memória alocada
 }
 
 void list_t::push_front (const int& value) noexcept
@@ -35,7 +35,7 @@ list_node_t* list_t::get (const int& value) noexcept
    return nullptr;
 }
 
-list_node_t* list_t::erase (const int& value) noexcept
+list_node_t* list_t::erase (list_node_t* node) noexcept
 {
     /*
     TODO:
